@@ -1,0 +1,119 @@
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+    font-family: 'Arial', sans-serif;
+    min-height: 100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background: linear-gradient(135deg,#667eea 0%,#764ba2 100%);
+}
+
+.container {
+    background: linear-gradient(135deg,#1a1a2e 0%,#16213e 50%,#0f3460 100%);
+    border-radius: 20px;
+    padding:0;
+    max-width:1200px;
+    width:95%;
+    overflow:hidden;
+    box-shadow:0 25px 50px rgba(0,0,0,0.3);
+}
+
+.header { display:flex; justify-content:space-between; align-items:center; padding:20px 40px; background: rgba(0,0,0,0.2); }
+.logo { display:flex; align-items:center; gap:10px; color:white; font-size:24px; font-weight:bold; }
+.logo-icon { width:32px; height:32px; background: linear-gradient(45deg,#667eea,#764ba2); border-radius:50%; display:flex; align-items:center; justify-content:center; color:white; font-weight:bold; }
+.nav { display:flex; gap:30px; align-items:center; }
+.nav a { color:#ccc; text-decoration:none; transition:color 0.3s ease; }
+.nav a:hover { color:white; }
+.auth-buttons { display:flex; gap:15px; align-items:center; }
+.sign-in { color:white; text-decoration:none; padding:8px 16px; border-radius:8px; transition:background 0.3s ease; }
+.sign-in:hover { background: rgba(255,255,255,0.1); }
+.sign-up { background:white; color:#1a1a2e; text-decoration:none; padding:10px 20px; border-radius:8px; font-weight:600; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+.sign-up:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(0,0,0,0.4); }
+
+.main-content {
+    position: relative;
+    display:flex;
+    align-items:center;
+    padding:60px 40px;
+    gap:60px;
+    flex-wrap:wrap;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.main-content::before {
+    content:'';
+    position:absolute;
+    top:0; left:0;
+    width:100%; height:100%;
+    background-image: url("https://images.stockcake.com/public/8/e/7/8e7cb1bc-d60b-4c65-ab36-8bced3d407b2_large/digital-wealth-evolution-stockcake.jpg");
+    background-size: cover;
+    background-position: center;
+    filter: blur(2px) brightness(0.75); /* reduced blur from 8px to 4px, slightly brighter */
+
+    z-index:1;
+}
+
+.main-content > * {
+    position: relative;
+    z-index:2;
+}
+
+.text-content { flex:1; color:white; opacity:0; transform: translateY(20px); animation:textAppear 1s forwards 0.3s; }
+@keyframes textAppear { to { opacity:1; transform:translateY(0); } }
+
+.main-title { font-size:4rem; font-weight:700; line-height:1.1; margin-bottom:30px; }
+.main-title .buy { font-style:italic; font-weight:300; }
+.main-title .highlight {
+    background: linear-gradient(45deg,#00ffff,#00bfff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.subtitle { font-size:1.2rem; color:#f0f8ff; margin-bottom:40px; line-height:1.6; }
+
+.cards-container { flex:1; position:relative; height:400px; display:flex; align-items:center; justify-content:center; perspective:1500px; }
+.card {
+    position:absolute;
+    width:280px; height:180px;
+    border-radius:15px;
+    display:flex; flex-direction:column; justify-content:space-between;
+    padding:25px;
+    color:white; font-weight:600;
+    transition: all 0.6s cubic-bezier(0.4,0,0.2,1);
+    opacity:0;
+    transform: translateX(100px) rotateY(45deg);
+    cursor:pointer;
+    box-shadow:0 20px 40px rgba(0,0,0,0.3);
+}
+.card:hover { transform: scale(1.05) rotateY(0deg); box-shadow:0 25px 50px rgba(0,0,0,0.5); }
+.card.active { opacity:1; transform:translateX(0) rotateY(0deg); z-index:4; }
+.card.prev { opacity:0.7; transform: translateX(-40px) rotateY(-15deg) scale(0.95); z-index:3; }
+.card.next { opacity:0.4; transform: translateX(40px) rotateY(15deg) scale(0.9); z-index:2; }
+.card.hidden { opacity:0; transform: translateX(-100px) rotateY(-45deg) scale(0.8); z-index:1; }
+
+.card-visa { background: linear-gradient(135deg,#4fc3f7 0%,#29b6f6 100%); }
+.card-mastercard { background: linear-gradient(135deg,#ff7043 0%,#ff5722 100%); }
+.card-amex { background: linear-gradient(135deg,#66bb6a 0%,#4caf50 100%); }
+.card-discover { background: linear-gradient(135deg,#ffb74d 0%,#ff9800 100%); }
+
+.card-chip { width:40px; height:30px; background: linear-gradient(45deg,#ffd700,#ffed4e); border-radius:5px; margin-bottom:20px; }
+.card-number { font-family:'Courier New', monospace; font-size:18px; letter-spacing:2px; margin-bottom:20px; }
+.card-info { display:flex; justify-content:space-between; align-items:flex-end; }
+.card-holder { font-size:14px; opacity:0.9; }
+.card-brand { font-size:24px; font-weight:700; }
+
+.features { display:flex; justify-content:space-around; padding:40px; background: rgba(0,0,0,0.1); }
+.feature { display:flex; align-items:center; gap:10px; color:#ccc; font-size:14px; }
+.feature-icon { width:20px; height:20px; background: linear-gradient(45deg,#667eea,#764ba2); border-radius:50%; display:flex; align-items:center; justify-content:center; color:white; font-size:12px; }
+
+@media(max-width:768px) {
+    .main-content { flex-direction:column; text-align:center; padding:40px 20px; gap:40px; }
+    .main-title { font-size:2.5rem; }
+    .cards-container { height:300px; }
+    .card { width:240px; height:150px; padding:20px; }
+    .header { padding:15px 20px; }
+    .nav { display:none; }
+}
